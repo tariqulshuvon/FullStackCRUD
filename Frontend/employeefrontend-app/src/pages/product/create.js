@@ -1,8 +1,13 @@
-import { addProduct, getAllCountry } from "@/services/product.service";
+import { addProduct } from "@/services/product.service";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
+
+
+
 const create = () => {
+    const [formData, setFormData] = useState([]);
+
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -12,93 +17,181 @@ const create = () => {
     e.target.reset();
 
     router.push(`/product`);
+
   };
+
+  const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+  };
+
   return (
     <div>
-      <div className="container">
-        <h2>Add product List</h2>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="form-group">
-            <label htmlFor="productName">Product Name:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="productName"
-              name="productName"
-              required
-            />
-          </div>
+      <div className="emp-bg">
+        <section className="content">
+          <div className="container">
+            <div className="card">
+              <div className="card-header">
+                <h3 className="card-title">Add New Product</h3>
+              </div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <div className="card-body">
+                  <div className="row mt-2">
+                    <div className="col-md-6">
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="productName"
+                        >
+                          Product Name
+                        </label>
 
-          <div className="form-group">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              required
-            />
-          </div>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="text"
+                            name="productName"
+                          />
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="description"
+                        >
+                          Description
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="text"
+                            name="description"
+                          />
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="price"
+                        >
+                          Price
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="number"
+                            name="price"
+                          />
+                        </div>
+                      </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="sellPrice"
+                        >
+                          Sell Price
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="number"
+                            name="sellPrice"
+                          />
+                        </div>
+                      </div>
 
-          <div className="form-group">
-            <label htmlFor="countryId">countryId</label>
-            <input
-              type="number"
-              className="countryId"
-              id="countryId"
-              name="countryId"
-              required
-            />
-          </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="rating"
+                        >
+                          Rating
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="number"
+                            name="rating"
+                          />
+                        </div>
+                      </div>
 
-          <div className="form-group">
-            <label htmlFor="rating">Rating</label>
-            <input
-              type="number"
-              className="form-control"
-              id="rating"
-              name="rating"
-              required
-            />
-          </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="barcode"
+                        >
+                          Barcode
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="text"
+                            name="barcode"
+                          />
+                        </div>
+                      </div>
 
-          <div className="form-group">
-            <label htmlFor="price">price</label>
-            <input
-              type="number"
-              className="price"
-              id="price"
-              name="price"
-              required
-            />
-          </div>
+                      <div className="row mb-2">
+                        <label
+                          className="col-md-3 col-form-label"
+                          htmlFor="countryId"
+                        >
+                          Country Id
+                        </label>
+                        <div className="col-md-9">
+                          <input
+                            onChange={(e) => handleChange(e)}
+                            className="form-control"
+                            type="number"
+                            name="countryId"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div className="form-group">
-            <label htmlFor="barCode">barCode</label>
-            <input
-              type="text"
-              className="barCode"
-              id="barCode"
-              name="barCode"
-              required
-            />
+                <div className="row mb-2">
+                  <label
+                    className="col-md-3 col-form-label"
+                    htmlFor="countryName"
+                  >
+                    Country Name
+                  </label>
+                  <div className="col-md-9">
+                    <input
+                      onChange={(e) => handleChange(e)}
+                      className="form-control"
+                      type="text"
+                      name="countryName"
+                    />
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <div className="text-end">
+                    <button
+                      type="submit"
+                      className="btn btn-outline-primary btn-sm"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-
-          <div className="form-group">
-            <label htmlFor="sellPrice">sell price</label>
-            <input
-              type="number"
-              className="sellPrice"
-              id="sellPrice"
-              name="sellPrice"
-              required
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+        </section>
       </div>
     </div>
   );

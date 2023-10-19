@@ -34,7 +34,7 @@ public class ProductController : APIControllerBase
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult<VMProduct>> UpdateProduct(int id, VMProduct product)
+    public async Task<ActionResult<VMProduct>> UpdateProduct(int id, [FromForm] VMProduct product)
     {
         return await HandleCommandAsync(new UpdateProductCommand(id, product));
     }
